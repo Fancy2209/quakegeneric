@@ -36,3 +36,7 @@ cmake-build*
 
 # meson
 meson-build*
+
+# ps3
+source/quakegeneric.elf
+source/quakegeneric.self

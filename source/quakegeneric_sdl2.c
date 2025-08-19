@@ -46,6 +46,9 @@ void QG_Init(void)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window = SDL_CreateWindow("Quake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, QUAKEGENERIC_RES_X, QUAKEGENERIC_RES_Y, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED);
+#ifdef __lv2ppu__
+	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+#endif
 	SDL_SetWindowMinimumSize(window, QUAKEGENERIC_RES_X, QUAKEGENERIC_RES_Y);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC);
 	SDL_RenderSetLogicalSize(renderer, QUAKEGENERIC_RES_X, QUAKEGENERIC_RES_Y);
@@ -58,7 +61,11 @@ void QG_Init(void)
 	keybuffer_start = 0;
 	mouse_x = mouse_y = 0;
 	memset(joy_axes, 0, sizeof(joy_axes));
-
+#ifdef __lv2ppu__
+	while(SDL_NumJoysticks() == 0) {
+		SDL_PumpEvents();
+	}
+#endif
     if (SDL_NumJoysticks() != 0) {
 		joystick = SDL_JoystickOpen(0);
 	} else {

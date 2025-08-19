@@ -1,0 +1,8 @@
+export CFLAGS="-mcpu=cell -mhard-float -fmodulo-sched -ffunction-sections -fdata-sections -I$PS3DEV/ppu/include -I$PS3DEV/portlibs/ppu/include -I$PS3DEV/ppu/include/simdmath"
+export CXXFLAGS="-D_GLIBCXX11_USE_C99_STDIO $CFLAGS"
+export CPPFLAGS="-D_GLIBCXX11_USE_C99_STDIO $CFLAGS"
+export LDFLAGS="-mhard-float -fmodulo-sched -Wl,--gc-sections -L$PS3DEV/ppu/lib -L$PS3DEV/portlibs/ppu/lib"
+export PKG_CONFIG_DIR=""
+export PKG_CONFIG_PATH=""
+export PKG_CONFIG_SYSROOT_DIR=""
+export PKG_CONFIG_LIBDIR="$PS3DEV/portlibs/ppu/lib/pkgconfig"

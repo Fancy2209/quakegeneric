@@ -31,7 +31,11 @@ void QG_Create(int argc, char *argv[])
 
 	parms.memsize = 8*1024*1024;
 	parms.membase = malloc (parms.memsize);
+#ifdef __lv2ppu__
+	parms.basedir = "/dev_hdd0/Quake/";
+#else
 	parms.basedir = ".";
+#endif
 
 	COM_InitArgv (argc, argv);
 
